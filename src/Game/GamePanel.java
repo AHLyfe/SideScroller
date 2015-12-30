@@ -10,6 +10,8 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
+import Main.ShowFPS;
+
 public class GamePanel extends JPanel implements Runnable{
 	Thread thread = new Thread(this);
 	
@@ -121,6 +123,8 @@ public class GamePanel extends JPanel implements Runnable{
 		g.fillRect(20, 20, 100, 100);
 		
 		world.draw(g);
+		
+		ShowFPS.drawFPS(g);
 	}
 	
 	public void define(){

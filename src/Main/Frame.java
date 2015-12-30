@@ -42,7 +42,9 @@ public class Frame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(new GridLayout(1,1,0,0));
-
+		
+		
+		//Repaint thread - should probably have a static thread that can stop and start but whatever
 		new Thread(){
 			public void run(){
 				while(true){
@@ -53,7 +55,6 @@ public class Frame{
 					}
 					if(frame.getComponentCount() != 0){
 						panel.repaint();
-						//System.out.println(panel.getComponentAt(1,1));
 					}
 				}
 			}
@@ -61,6 +62,8 @@ public class Frame{
 		
 		panel = new JPanel(new CardLayout());
 		frame.add(panel);
+		
+		//Add the menu to start with
 		setComponent(new MenuPanel());	
 		
 		frame.setVisible(true);
