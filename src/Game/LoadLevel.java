@@ -17,8 +17,8 @@ public class LoadLevel {
 			e.printStackTrace();
 		}
 		
-		for(int y = 0;y < width;y++){
-			for(int x = 0;x < height;x++){
+		for(int y = 0;y < height;y++){
+			for(int x = 0;x < width;x++){
 				squareArray[x][y] = new Square(x,y,scanner.nextInt());
 				System.out.println(squareArray[x][y].ID);
 			}
