@@ -8,8 +8,8 @@ public class LoadLevel {
 	static Scanner scanner;
 	
 	//Load the level
-	public static Square[][] loadLevel(String filepath, int width, int height){
-		Square[][] squareArray = new Square[width][height];
+	public static Square[][] loadLevel(String filepath, int width){
+		Square[][] squareArray = new Square[width][World.worldHeight];
 		
 		try {
 			scanner = new Scanner(new File(filepath + ".level"));
@@ -17,7 +17,7 @@ public class LoadLevel {
 			e.printStackTrace();
 		}
 		
-		for(int y = 0;y < height;y++){
+		for(int y = 0;y < World.worldHeight;y++){
 			for(int x = 0;x < width;x++){
 				squareArray[x][y] = new Square(x,y,scanner.nextInt());
 				System.out.println(squareArray[x][y].ID);
@@ -28,8 +28,8 @@ public class LoadLevel {
 	}
 	
 	//Load level info such as width, height etc.
-	public static int[] loadLevelInfo(String filepath){
-		int[] dimensions = new int[2];
+	public static int loadLevelInfo(String filepath){
+		int width;
 		
 		try {
 			scanner = new Scanner(new File(filepath + ".levelinfo"));
@@ -37,12 +37,8 @@ public class LoadLevel {
 			e.printStackTrace();
 		}
 		
-		String line = scanner.nextLine();
-		String[] dimensionsStr = line.split(",");
+		width = scanner.nextInt();
 		
-		dimensions[0] = Integer.parseInt(dimensionsStr[0]);
-		dimensions[1] = Integer.parseInt(dimensionsStr[1]);
-		
-		return dimensions;
+		return width;
 	}
 }

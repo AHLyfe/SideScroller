@@ -81,8 +81,15 @@ public class GamePanel extends JPanel implements Runnable{
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
+				if(e.getKeyCode() == KeyEvent.VK_LEFT){
+					player.left();
+				}
+				else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+					player.right();
+				}
+				else if(e.getKeyCode() == KeyEvent.VK_UP){
+					player.jump();
+				}	
 			}
 
 			@Override
@@ -123,6 +130,7 @@ public class GamePanel extends JPanel implements Runnable{
 		g.fillRect(20, 20, 100, 100);
 		
 		world.draw(g);
+		player.draw(g);
 		
 		ShowFPS.drawFPS(g);
 	}
@@ -131,8 +139,8 @@ public class GamePanel extends JPanel implements Runnable{
 		myWidth = getWidth();
 		myHeight = getHeight();
 		
-		player = new Player();
 		world = new World("res/levels/test");
+		player = new Player();
 	}
 	
 	public void run(){

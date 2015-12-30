@@ -8,19 +8,16 @@ import Main.Frame;
 
 public class World {
 	public int worldWidth;
-	public int worldHeight;
-	
+	public static final int worldHeight = 18;
 	public static final int blockSize = 32;
 	
-	public Square[][] squares;
+	public static Square[][] squares;
 	
 	public World(String filepath){
-		int[] dimensions = LoadLevel.loadLevelInfo(filepath);
 		
-		worldWidth = dimensions[0];
-		worldHeight = dimensions[1];
+		worldWidth = LoadLevel.loadLevelInfo(filepath);
 		
-		squares = LoadLevel.loadLevel(filepath, worldWidth, worldHeight);
+		squares = LoadLevel.loadLevel(filepath, worldWidth);
 		
 		Frame.panel.setPreferredSize(new Dimension(worldWidth*blockSize, worldHeight*blockSize));
 		Frame.frame.pack();
