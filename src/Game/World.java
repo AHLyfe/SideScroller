@@ -14,14 +14,16 @@ public class World {
 	
 	public Square[][] squares;
 	
-	public World(int width, int height){
-		worldWidth = width;
-		worldHeight = height;
+	public World(String filepath){
+		int[] dimensions = LoadLevel.loadLevelInfo(filepath);
+		
+		worldWidth = dimensions[0];
+		worldHeight = dimensions[1];
+		
+		squares = LoadLevel.loadLevel(filepath, worldWidth, worldHeight);
 		
 		Frame.panel.setPreferredSize(new Dimension(worldWidth*blockSize, worldHeight*blockSize));
 		Frame.frame.pack();
-		
-		squares = LoadLevel.loadLevel(new File("res/levels/test.level"), width, height);
 	}
 	
 	public void draw(Graphics g){

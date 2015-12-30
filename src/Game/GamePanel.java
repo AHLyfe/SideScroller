@@ -132,7 +132,7 @@ public class GamePanel extends JPanel implements Runnable{
 		myHeight = getHeight();
 		
 		player = new Player();
-		world = new World(10,10);
+		world = new World("res/levels/test");
 	}
 	
 	public void run(){
