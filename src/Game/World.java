@@ -19,7 +19,7 @@ public class World {
 		
 		squares = LoadLevel.loadLevel(filepath, worldWidth);
 		
-		Frame.panel.setPreferredSize(new Dimension(worldWidth*blockSize, worldHeight*blockSize));
+		Frame.panel.setPreferredSize(new Dimension(32*blockSize, worldHeight*blockSize));
 		Frame.frame.pack();
 	}
 	

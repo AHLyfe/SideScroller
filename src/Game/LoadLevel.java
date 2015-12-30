@@ -27,7 +27,7 @@ public class LoadLevel {
 		return squareArray;
 	}
 	
-	//Load level info such as width, height etc.
+	//Load level width
 	public static int loadLevelInfo(String filepath){
 		int width;
 		
