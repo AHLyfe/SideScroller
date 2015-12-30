@@ -14,6 +14,8 @@ public class World {
 	
 	public Square[][] squares;
 	
+	
+	public String ayy = "lmao";
 	public World(int width, int height){
 		worldWidth = width;
 		worldHeight = height;
