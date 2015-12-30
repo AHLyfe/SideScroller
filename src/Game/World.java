@@ -16,6 +16,8 @@ public class World {
 	
 	
 	public String ayy = "lmao";
+	public int skdjfnbw = 420;
+	
 	public World(int width, int height){
 		worldWidth = width;
 		worldHeight = height;
