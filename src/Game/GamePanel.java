@@ -21,6 +21,8 @@ public class GamePanel extends JPanel implements Runnable{
 	public Player player;
 	public World world;
 	
+	public int test;
+	
 	
 	
 	public GamePanel(){
