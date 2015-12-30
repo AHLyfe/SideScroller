@@ -1,0 +1,26 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	new file:   .classpath
+#	new file:   .project
+#	new file:   .settings/org.eclipse.jdt.core.prefs
+#	new file:   res/levels/test.level
+#	new file:   src/Game/Enemies/Skeleton.java
+#	new file:   src/Game/Enemy.java
+#	new file:   src/Game/GamePanel.java
+#	new file:   src/Game/LoadLevel.java
+#	new file:   src/Game/Player.java
+#	new file:   src/Game/PlayerClasses/Warrior.java
+#	new file:   src/Game/Square.java
+#	new file:   src/Game/World.java
+#	new file:   src/Main/Frame.java
+#	new file:   src/Main/ShowFPS.java
+#	new file:   src/Menu/MenuPanel.java
+
+Start of Project
+
+Basic framework for project laid down and examples of how project will be structured
