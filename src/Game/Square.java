@@ -11,7 +11,7 @@ public class Square extends Rectangle{
 	int ID;
 	
 	double friction;
-	boolean free;
+	boolean solid;
 	double gravity;
 	
 	public Square(int x,int y, int ID){
@@ -29,22 +29,22 @@ public class Square extends Rectangle{
 		if(ID == 0){
 			//air
 			friction = 0.8;
-			free = true;
+			solid = true;
 			gravity = 1000;
 		}
 		else if (ID == 1){
 			friction = 6;
-			free = false;
+			solid = false;
 			gravity = 0;
 		}
 		else if (ID == 2){
 			friction = 1;
-			free = false;
+			solid = false;
 			gravity = 0;
 		}
 		else if (ID == 3){
 			friction = 0;
-			free = true;
+			solid = true;
 			gravity = 400;
 		}
 	}
