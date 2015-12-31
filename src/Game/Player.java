@@ -21,8 +21,8 @@ public class Player extends Rectangle{
 	boolean isUp;
 	double xVelocity = 0;
 	double xAcceleration =4;
-	double xFriction = 0.8;
-	double xFastFriction = 2;
+	double xGroundedFriction = 3;
+	double xAirFriction = 0.8;
 	
 	
 	
@@ -86,27 +86,33 @@ public class Player extends Rectangle{
 		}
 		
 		if(isRight){
-			if(Math.abs(xVelocity) < maxSpeed){
+			if(xVelocity < maxSpeed){
 				xVelocity += xAcceleration/100; 
 			}
 		}
 		else if(isLeft){
-			if(Math.abs(xVelocity) < maxSpeed){
+			if(xVelocity > -maxSpeed){
 				xVelocity -= xAcceleration/100;
 			}
 		}
 		else if(xVelocity != 0){
-			if(xVelocity > 0.8){
-				xVelocity -= xFriction/100*Math.pow(xVelocity*1.5, 2);
+			if(jumping & xVelocity > 0){
+				xVelocity -= xAirFriction/100;
+			}
+			else if(jumping & xVelocity > 0){
+				xVelocity += xAirFriction/100;
+			}
+			else if(xVelocity > 0.8){
+				xVelocity -= xGroundedFriction/100*Math.pow(xVelocity*1.5, 2);
 			}
 			else if(xVelocity < -0.8){
-				xVelocity += xFriction/100*Math.pow(xVelocity*1.5, 2);
+				xVelocity += xGroundedFriction/100*Math.pow(xVelocity*1.5, 2);
 			}
 			else if(xVelocity > 0){
-				xVelocity -= xFriction/100;
+				xVelocity -= xGroundedFriction/100;
 			}
 			else if(xVelocity < 0){
-				xVelocity += xFriction/100;
+				xVelocity += xGroundedFriction/100;
 			}
 		}
 		doublex += xVelocity;
