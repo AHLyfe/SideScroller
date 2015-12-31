@@ -49,7 +49,7 @@ public class Frame{
 			public void run(){
 				while(true){
 					try {
-						Thread.sleep(1);
+						Thread.sleep(14);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}

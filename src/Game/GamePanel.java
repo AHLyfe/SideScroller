@@ -94,7 +94,15 @@ public class GamePanel extends JPanel implements Runnable{
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
+				if(e.getKeyCode() == KeyEvent.VK_LEFT){
+					player.isLeft = false;
+				}
+				else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+					player.isRight = false;
+				}
+				else if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE){
+					player.isUp = false;
+				}	
 				
 			}
 
@@ -147,7 +155,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public void run(){
 		while(true){
 			try {
-				thread.sleep(1);
+				thread.sleep(10);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
