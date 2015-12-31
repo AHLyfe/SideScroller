@@ -13,7 +13,6 @@ public class Player extends Rectangle{
 	double doubley;
 	double gravity = 1000;
 	int direction;
-	final int maxSpeed = 2;
 	final int left = 0, right = 1;
 	boolean jumping = false;
 	boolean grounded = true;
@@ -137,14 +136,21 @@ public class Player extends Rectangle{
 
 		grounded = !squareLeft.solid && !squareRight.solid;
 		
+		double maxXSpeed;
+		if (squareLeft.maxXSpeed > squareRight.maxXSpeed){
+			maxXSpeed = squareLeft.maxXSpeed;
+		}
+		else{
+			maxXSpeed = squareRight.maxXSpeed;
+		}
 		
 		if(isRight){
-			if(xVelocity < maxSpeed){
+			if(xVelocity < maxXSpeed){
 				xVelocity += xAcceleration/100; 
 			}
 		}
 		else if(isLeft){
-			if(xVelocity > -maxSpeed){
+			if(xVelocity > -maxXSpeed){
 				xVelocity -= xAcceleration/100;
 			}
 		}
