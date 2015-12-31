@@ -11,6 +11,8 @@ public class Square extends Rectangle{
 	int ID;
 	
 	double friction;
+	boolean free;
+	double gravity;
 	
 	public Square(int x,int y, int ID){
 		xCo = x;
@@ -25,13 +27,25 @@ public class Square extends Rectangle{
 		this.ID = ID;
 		
 		if(ID == 0){
+			//air
 			friction = 0.8;
+			free = true;
+			gravity = 1000;
 		}
 		else if (ID == 1){
 			friction = 6;
+			free = false;
+			gravity = 0;
 		}
 		else if (ID == 2){
 			friction = 1;
+			free = false;
+			gravity = 0;
+		}
+		else if (ID == 3){
+			friction = 0;
+			free = true;
+			gravity = 400;
 		}
 	}
 	
@@ -44,6 +58,9 @@ public class Square extends Rectangle{
 		}
 		else if(ID==2){
 			g.setColor(new Color(100,200,255));
+		}
+		else if(ID==3){
+			g.setColor(Color.GREEN);
 		}
 		g.fillRect(x, y, width, height);
 	}

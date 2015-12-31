@@ -16,13 +16,12 @@ public class Player extends Rectangle{
 	final int maxSpeed = 2;
 	final int left = 0, right = 1;
 	boolean jumping = false;
+	boolean grounded = true;
 	boolean isLeft;
 	boolean isRight;
 	boolean isUp;
 	double xVelocity = 0;
 	double xAcceleration =4;
-	double xGroundedFriction = 3;
-	double xAirFriction = 0.8;
 	
 	
 	
@@ -35,7 +34,7 @@ public class Player extends Rectangle{
 		doublex = 0;
 		
 		for(int i = 0;i<World.worldHeight;i++){
-			if(World.squares[0][i].ID != 0){
+			if(!World.squares[0][i].free){
 				System.out.println(i);
 				this.y = i*World.blockSize - height;
 				doubley = y;
@@ -46,9 +45,9 @@ public class Player extends Rectangle{
 	
 	public void jump(){
 		isUp = true;
-		if(jumping == false){
+		if(grounded){
 			dy = -300;
-			jumping = true;
+			grounded = false;
 		}
 		System.out.println("jump");
 	}
@@ -65,6 +64,50 @@ public class Player extends Rectangle{
 		System.out.println("right");
 	}
 	
+	public void doGravity(double gravityLeft, double gravityRight){
+		doubley+=(dy/100);
+		if(gravityLeft> gravityRight){
+			dy+=gravityLeft/100;
+		}
+		else{
+			dy+=gravityRight/100;
+		}
+		y=(int)doubley;
+		
+		for(int i = 0;i < World.worldHeight;i++){
+			for(int j = 0;j < World.worldWidth;j++){
+				while(this.intersects(World.squares[j][i]) && !World.squares[j][i].free){
+					dy = 0;
+					y--;
+					doubley = y;
+				}
+			}
+		}
+	}
+	
+	public void doXFriction(double frictionLeft, double frictionRight){
+		double friction;
+		if(frictionLeft > frictionRight){
+			friction = frictionLeft;
+		}
+		else{
+			friction = frictionRight;
+		}
+		
+		if (xVelocity > 0){
+			xVelocity -= friction/100;
+			if (xVelocity < 0){
+				xVelocity = 0;
+			}
+		}
+		else {
+			xVelocity += friction/100;
+			if (xVelocity > 0){
+				xVelocity = 0;
+			}
+		}
+	}
+	
 	public void act(){
 		//calculate 2 squares below
 		Square squareLeft = null;
@@ -79,7 +122,7 @@ public class Player extends Rectangle{
 		}
 		for(int i = 0;i < World.worldHeight;i++){
 			for(int j = 0;j < World.worldWidth;j++){
-				if(World.squares[j][i].contains(x + width, y+ height + 1)){
+				if(World.squares[j][i].contains(x + width, y + height + 1)){
 					squareRight = World.squares[j][i];
 					break;
 				}
@@ -87,24 +130,12 @@ public class Player extends Rectangle{
 		}
 		
 		
-		if(jumping){
-			doubley+=(dy/100);
-			dy+=(gravity/100);
-			y=(int)doubley;
-			
-			boolean collision = false;
-			for(int i = 0;i < World.worldHeight;i++){
-				for(int j = 0;j < World.worldWidth;j++){
-					while(this.intersects(World.squares[j][i]) && World.squares[j][i].ID != 0){
-						dy = 0;
-						y--;
-						doubley = y;
-						jumping = false;
-						collision = true;
-					}if(collision){break;}
-				}
-			}
+		if(!grounded){
+			doGravity(squareLeft.gravity, squareRight.gravity);
 		}
+
+		grounded = !squareLeft.free && !squareRight.free;
+		
 		
 		if(isRight){
 			if(xVelocity < maxSpeed){
@@ -117,20 +148,7 @@ public class Player extends Rectangle{
 			}
 		}
 		else if(xVelocity != 0){
-			double friction = (squareLeft.friction + squareRight.friction)/2;
-			
-			if (xVelocity > 0){
-				xVelocity -= friction/100;
-				if (xVelocity < 0){
-					xVelocity = 0;
-				}
-			}
-			else {
-				xVelocity += friction/100;
-				if (xVelocity > 0){
-					xVelocity = 0;
-				}
-			}
+			doXFriction(squareLeft.friction, squareRight.friction);
 		}
 		doublex += xVelocity;
 		x = (int)doublex;
@@ -139,7 +157,7 @@ public class Player extends Rectangle{
 		boolean collision = false;
 		for(int i = 0;i < World.worldHeight;i++){
 			for(int j = 0;j < World.worldWidth;j++){
-				while(this.intersects(World.squares[j][i]) && World.squares[j][i].ID != 0){
+				while(this.intersects(World.squares[j][i]) && !World.squares[j][i].free){
 					if(xVelocity > 0){
 						x--;
 					}
@@ -152,11 +170,11 @@ public class Player extends Rectangle{
 				}if(collision){xVelocity = 0;break;}
 			}
 		}
-	
+	/*
 		if(!jumping){
 			
 			if(squareLeft != null && squareRight != null){
-				if(squareLeft.ID == 0 && squareRight.ID == 0){
+				if(squareLeft.free && squareRight.free){
 					System.out.println(squareLeft.xCo);
 					System.out.println(squareLeft.yCo);
 					System.out.println(squareRight.xCo);
@@ -165,16 +183,18 @@ public class Player extends Rectangle{
 					jumping = true;
 				}
 			}
-		}
+		}*/
 		
 		
-		if(x < 0){
-			doublex++;
+		if(x<0){
+			x = 0;
+			doublex = 0;
 			xVelocity = 0;
-			System.out.println("?");
 		}
-		else if(x > World.worldWidth*World.blockSize - width){
-			doublex--;
+		if(doublex > World.worldWidth*World.blockSize - width -1){
+			doublex = World.worldWidth*World.blockSize - width -1;
+			System.out.println(doublex);
+			x = (int)doublex;
 			xVelocity = 0;
 		}
 	}
