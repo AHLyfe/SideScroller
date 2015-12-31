@@ -31,7 +31,7 @@ public class Square extends Rectangle{
 			friction = 6;
 		}
 		else if (ID == 2){
-			friction = 2;
+			friction = 1;
 		}
 	}
 	
