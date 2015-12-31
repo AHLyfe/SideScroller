@@ -131,20 +131,6 @@ public class Player extends Rectangle{
 					xVelocity = 0;
 				}
 			}
-			
-			/*
-			if(xVelocity > 0.8){
-				xVelocity -= xGroundedFriction/100*Math.pow(xVelocity*1.5, 2);
-			}
-			else if(xVelocity < -0.8){
-				xVelocity += xGroundedFriction/100*Math.pow(xVelocity*1.5, 2);
-			}
-			else if(xVelocity > 0){
-				xVelocity -= xGroundedFriction/100;
-			}
-			else if(xVelocity < 0){
-				xVelocity += xGroundedFriction/100;
-			}*/
 		}
 		doublex += xVelocity;
 		x = (int)doublex;
