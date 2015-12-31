@@ -46,7 +46,7 @@ public class Player extends Rectangle{
 	public void jump(){
 		isUp = true;
 		if(grounded){
-			dy = -300;
+			dy = -3;
 			grounded = false;
 		}
 		System.out.println("jump");
@@ -65,13 +65,14 @@ public class Player extends Rectangle{
 	}
 	
 	public void doGravity(double gravityLeft, double gravityRight){
-		doubley+=(dy/100);
+		
 		if(gravityLeft> gravityRight){
-			dy+=gravityLeft/100;
+			dy+=gravityLeft;
 		}
 		else{
-			dy+=gravityRight/100;
+			dy+=gravityRight;
 		}
+		doubley+=dy;
 		y=(int)doubley;
 		
 		for(int i = 0;i < World.worldHeight;i++){

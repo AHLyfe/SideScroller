@@ -30,7 +30,7 @@ public class Square extends Rectangle{
 			//air
 			friction = 0.8;
 			solid = true;
-			gravity = 1000;
+			gravity = 0.1;
 		}
 		else if (ID == 1){
 			friction = 6;
@@ -45,7 +45,7 @@ public class Square extends Rectangle{
 		else if (ID == 3){
 			friction = 0;
 			solid = true;
-			gravity = 400;
+			gravity = 0.02; 
 		}
 	}
 	
