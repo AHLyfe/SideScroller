@@ -10,6 +10,8 @@ public class Square extends Rectangle{
 	
 	int ID;
 	
+	double friction;
+	
 	public Square(int x,int y, int ID){
 		xCo = x;
 		yCo = y;
@@ -21,6 +23,16 @@ public class Square extends Rectangle{
 		height = World.blockSize;
 		
 		this.ID = ID;
+		
+		if(ID == 0){
+			friction = 0.8;
+		}
+		else if (ID == 1){
+			friction = 6;
+		}
+		else if (ID == 2){
+			friction = 2;
+		}
 	}
 	
 	public void draw(Graphics g){
@@ -29,6 +41,9 @@ public class Square extends Rectangle{
 		}
 		else if(ID==1){
 			g.setColor(Color.BLACK);
+		}
+		else if(ID==2){
+			g.setColor(new Color(100,200,255));
 		}
 		g.fillRect(x, y, width, height);
 	}

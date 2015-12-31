@@ -66,6 +66,27 @@ public class Player extends Rectangle{
 	}
 	
 	public void act(){
+		//calculate 2 squares below
+		Square squareLeft = null;
+		Square squareRight = null;
+		for(int i = 0;i < World.worldHeight;i++){
+			for(int j = 0;j < World.worldWidth;j++){
+				if(World.squares[j][i].contains(x, y + height + 1)){
+					squareLeft = World.squares[j][i];
+					break;
+				}
+			}
+		}
+		for(int i = 0;i < World.worldHeight;i++){
+			for(int j = 0;j < World.worldWidth;j++){
+				if(World.squares[j][i].contains(x + width, y+ height + 1)){
+					squareRight = World.squares[j][i];
+					break;
+				}
+			}
+		}
+		
+		
 		if(jumping){
 			doubley+=(dy/100);
 			dy+=(gravity/100);
@@ -96,25 +117,17 @@ public class Player extends Rectangle{
 			}
 		}
 		else if(xVelocity != 0){
-			if(jumping & xVelocity > 0){
-				xVelocity -= xAirFriction/100;
+			double friction = (squareLeft.friction + squareRight.friction)/2;
+			
+			if (xVelocity > 0){
+				xVelocity -= friction/100;
 			}
-			else if(jumping & xVelocity > 0){
-				xVelocity += xAirFriction/100;
+			else {
+				xVelocity += friction/100;
 			}
-			else if(xVelocity > 0.8){
-				xVelocity -= xGroundedFriction/100*Math.pow(xVelocity*1.5, 2);
-			}
-			else if(xVelocity < -0.8){
-				xVelocity += xGroundedFriction/100*Math.pow(xVelocity*1.5, 2);
-			}
-			else if(xVelocity > 0){
-				xVelocity -= xGroundedFriction/100;
-			}
-			else if(xVelocity < 0){
-				xVelocity += xGroundedFriction/100;
-			}
+		
 		}
+		
 		doublex += xVelocity;
 		x = (int)doublex;
 		
@@ -137,24 +150,7 @@ public class Player extends Rectangle{
 		}
 	
 		if(!jumping){
-			Square squareLeft = null;
-			Square squareRight = null;
-			for(int i = 0;i < World.worldHeight;i++){
-				for(int j = 0;j < World.worldWidth;j++){
-					if(World.squares[j][i].contains(x, y + height + 1)){
-						squareLeft = World.squares[j][i];
-						break;
-					}
-				}
-			}
-			for(int i = 0;i < World.worldHeight;i++){
-				for(int j = 0;j < World.worldWidth;j++){
-					if(World.squares[j][i].contains(x + width, y+ height + 1)){
-						squareRight = World.squares[j][i];
-						break;
-					}
-				}
-			}
+			
 			if(squareLeft != null && squareRight != null){
 				if(squareLeft.ID == 0 && squareRight.ID == 0){
 					System.out.println(squareLeft.xCo);
