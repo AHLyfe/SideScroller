@@ -69,44 +69,7 @@ public class Player extends Rectangle{
 					break;
 				}
 			}
-		}
-		
-		dx += dxx/1000;
-		doublex += dx/1000;
-		x = (int)doublex;
-		if(dxx>0){
-			dxx-=1/1000;
-		}
-		if(dxx<0){
-			dxx+=1/1000;
-		}
-		if(dx>0){
-			dx-=1/1000;
-		}
-		else if(dx<0){
-			dx+=1/1000;
-		}
-		for(int i = 0;i < World.worldHeight;i++){
-			for(int j = 0;j < World.worldWidth;j++){
-				if(this.intersects(World.squares[j][i]) && World.squares[j][i].ID != 0){
-					if(dx>0){
-						x--;
-					}
-					else if(dx<0){
-						x++;
-					}
-					break;
-				}
-			}
-		}
-		if(x > World.worldWidth*World.blockSize - width){
-			x--;
-		}
-		if(x < 0){
-			x++;
-			System.out.println("?");
-		}
-		
+		}	
 	}
 	
 	
