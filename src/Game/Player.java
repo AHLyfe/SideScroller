@@ -20,8 +20,9 @@ public class Player extends Rectangle{
 	boolean isRight;
 	boolean isUp;
 	double xVelocity = 0;
-	double xAcceleration =1;
-	double xFriction = 0.5;
+	double xAcceleration =4;
+	double xFriction = 0.8;
+	double xFastFriction = 2;
 	
 	
 	
@@ -83,6 +84,7 @@ public class Player extends Rectangle{
 				}
 			}
 		}
+		
 		if(isRight){
 			if(Math.abs(xVelocity) < maxSpeed){
 				xVelocity += xAcceleration/100; 
@@ -94,7 +96,13 @@ public class Player extends Rectangle{
 			}
 		}
 		else if(xVelocity != 0){
-			if(xVelocity > 0){
+			if(xVelocity > 0.8){
+				xVelocity -= xFriction/100*Math.pow(xVelocity*1.5, 2);
+			}
+			else if(xVelocity < -0.8){
+				xVelocity += xFriction/100*Math.pow(xVelocity*1.5, 2);
+			}
+			else if(xVelocity > 0){
 				xVelocity -= xFriction/100;
 			}
 			else if(xVelocity < 0){
@@ -116,10 +124,40 @@ public class Player extends Rectangle{
 						x++;
 					}
 					doublex = x;
-					xVelocity = 0;
 					
 					collision = true;
-				}if(collision){break;}
+				}if(collision){xVelocity = 0;break;}
+			}
+		}
+	
+		if(!jumping){
+			Square squareLeft = null;
+			Square squareRight = null;
+			for(int i = 0;i < World.worldHeight;i++){
+				for(int j = 0;j < World.worldWidth;j++){
+					if(World.squares[j][i].contains(x, y + height + 1)){
+						squareLeft = World.squares[j][i];
+						break;
+					}
+				}
+			}
+			for(int i = 0;i < World.worldHeight;i++){
+				for(int j = 0;j < World.worldWidth;j++){
+					if(World.squares[j][i].contains(x + width, y+ height + 1)){
+						squareRight = World.squares[j][i];
+						break;
+					}
+				}
+			}
+			if(squareLeft != null && squareRight != null){
+				if(squareLeft.ID == 0 && squareRight.ID == 0){
+					System.out.println(squareLeft.xCo);
+					System.out.println(squareLeft.yCo);
+					System.out.println(squareRight.xCo);
+					System.out.println(squareRight.yCo);
+					System.out.println("?");
+					jumping = true;
+				}
 			}
 		}
 		
