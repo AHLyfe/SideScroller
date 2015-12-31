@@ -15,6 +15,7 @@ public class Player extends Rectangle{
 	int direction;
 	final int maxSpeed = 10;
 	final int left = 0, right = 1;
+	boolean jumping = false;
 	
 	
 	public Player(){
@@ -36,7 +37,10 @@ public class Player extends Rectangle{
 	}
 	
 	public void jump(){
-		dy = -100;
+		if(jumping == false){
+			dy = -100;
+			jumping = true;
+		}
 		System.out.println("jump");
 	}
 	
@@ -61,6 +65,7 @@ public class Player extends Rectangle{
 				if(this.intersects(World.squares[j][i]) && World.squares[j][i].ID != 0){
 					dy = 0;
 					y--;
+					jumping = false;
 					break;
 				}
 			}
