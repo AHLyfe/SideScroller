@@ -7,7 +7,7 @@ import java.io.File;
 import Main.Frame;
 
 public class World {
-	public int worldWidth;
+	public static int worldWidth;
 	public static final int worldHeight = 18;
 	public static final int blockSize = 32;
 	

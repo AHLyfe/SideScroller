@@ -20,7 +20,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public int myWidth;
 	public int myHeight;
 	
-	public Player player;
+	public Player player = null;
 	public World world;
 	
 	public int test; //Delete this variable
@@ -87,7 +87,7 @@ public class GamePanel extends JPanel implements Runnable{
 				else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
 					player.right();
 				}
-				else if(e.getKeyCode() == KeyEvent.VK_UP){
+				else if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE){
 					player.jump();
 				}	
 			}
@@ -110,6 +110,7 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		//Set focusable to mouseMotionListener can detect and focus on panel
 		this.setFocusable(true);
+		this.requestFocusInWindow(true);
 		this.requestFocusInWindow();
 		
 		//Debug
@@ -150,6 +151,9 @@ public class GamePanel extends JPanel implements Runnable{
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+			if(player != null){
+				player.act();
 			}
 		}
 	}
