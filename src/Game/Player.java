@@ -7,13 +7,8 @@ import java.awt.Rectangle;
 
 public class Player extends Rectangle{
 	double dy;
-	double dx;
-	double dxx;
 	double doublex;
 	double doubley;
-	double gravity = 1000;
-	int direction;
-	final int left = 0, right = 1;
 	boolean jumping = false;
 	boolean grounded = true;
 	boolean isLeft;
