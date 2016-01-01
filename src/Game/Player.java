@@ -63,13 +63,24 @@ public class Player extends Rectangle{
 		doubley+=dy;
 		y=(int)doubley;
 		
+		boolean collision = false;
 		for(int i = 0;i < World.worldHeight;i++){
 			for(int j = 0;j < World.worldWidth;j++){
 				while(this.intersects(World.squares[j][i]) && World.squares[j][i].solid){
-					dy = 0;
-					y--;
-					doubley = y;
 					
+					if(dy > 0){
+						y--;
+					}
+					if(dy < 0){
+						y++;
+					}
+					
+					collision = true;
+				}
+				if(collision){
+					doubley = y;
+					dy = 0;
+					break;
 				}
 			}
 		}
@@ -151,9 +162,7 @@ public class Player extends Rectangle{
 			friction = squareCentre.friction;
 		}
 
-		doGravity(squareCentre.gravity);
 		
-		grounded = squareLowerLeft.solid | squareLowerRight.solid;
 		
 		if(isRight){
 			if(xVelocity < maxXSpeed){
@@ -183,19 +192,26 @@ public class Player extends Rectangle{
 		for(int i = 0;i < World.worldHeight;i++){
 			for(int j = 0;j < World.worldWidth;j++){
 				while(this.intersects(World.squares[j][i]) && World.squares[j][i].solid){
+					
 					if(xVelocity > 0){
 						x--;
 					}
 					if(xVelocity < 0){
 						x++;
 					}
-					doublex = x;
-					
 					collision = true;
-				}if(collision){xVelocity = 0;break;}
+				}
+				if(collision){
+					xVelocity = 0;
+					doublex = x;
+					break;
+				}
 			}
 		}
-
+		
+		doGravity(squareCentre.gravity);
+		
+		grounded = squareLowerLeft.solid | squareLowerRight.solid;
 
 		
 		if(x<0){
@@ -207,6 +223,25 @@ public class Player extends Rectangle{
 			doublex = World.worldWidth*World.blockSize - width;
 			x = (int)doublex;
 			xVelocity = 0;
+		}
+		if(y<0){
+			//player hits top of world and stops
+			//y = 0;
+			//doubley = 0;
+			//dy = 0;
+			
+			//test of ceiling wrapping to floor
+			doubley = World.worldHeight*World.blockSize - height - 2;
+			y = (int)doubley;
+		}
+		if(y > World.worldHeight*World.blockSize - height - 2){
+			//doubley = World.worldHeight*World.blockSize - height - 2; //most likely dead
+			//y = (int)doubley;
+			//dy = 0;
+			
+			//test of ceiling wrapping to floor
+			y = 0;
+			doubley = 0;
 		}
 	}
 	
