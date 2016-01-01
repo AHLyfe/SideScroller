@@ -226,22 +226,17 @@ public class Player extends Rectangle{
 		}
 		if(y<0){
 			//player hits top of world and stops
-			//y = 0;
-			//doubley = 0;
-			//dy = 0;
-			
-			//test of ceiling wrapping to floor
-			doubley = World.worldHeight*World.blockSize - height - 2;
-			y = (int)doubley;
-		}
-		if(y > World.worldHeight*World.blockSize - height - 2){
-			//doubley = World.worldHeight*World.blockSize - height - 2; //most likely dead
-			//y = (int)doubley;
-			//dy = 0;
-			
-			//test of ceiling wrapping to floor
 			y = 0;
 			doubley = 0;
+			dy = 0;
+			
+			
+		}
+		if(y > World.worldHeight*World.blockSize - height - 2){
+			doubley = World.worldHeight*World.blockSize - height - 2; //most likely dead
+			y = (int)doubley;
+			dy = 0;
+			
 		}
 	}
 	
