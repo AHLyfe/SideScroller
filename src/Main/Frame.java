@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -42,6 +43,8 @@ public class Frame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(new GridLayout(1,1,0,0));
+		
+		frame.setIconImage(new ImageIcon("res/images/misc/icon.png").getImage());
 		
 		
 		//Repaint thread - should probably have a static thread that can stop and start but whatever

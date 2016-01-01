@@ -164,7 +164,7 @@ public class Player extends Rectangle{
 			if(xVelocity < maxXSpeed){
 				xVelocity += acceleration; 
 			}
-			if(xVelocity > maxXSpeed){
+			if(xVelocity > maxXSpeed){ //For high speeds
 				doXFriction(friction);
 			}
 		}
@@ -172,7 +172,7 @@ public class Player extends Rectangle{
 			if(xVelocity > -maxXSpeed){
 				xVelocity -= acceleration;
 			}
-			if(xVelocity < -maxXSpeed){
+			if(xVelocity < -maxXSpeed){ //For high speeds
 				doXFriction(friction);
 			}
 
