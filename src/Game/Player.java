@@ -20,7 +20,6 @@ public class Player extends Rectangle{
 	boolean isRight;
 	boolean isUp;
 	double xVelocity = 0;
-	double xAcceleration =4;
 	
 	
 	
@@ -102,9 +101,8 @@ public class Player extends Rectangle{
 		//calculate 2 squares below
 		Square squareLowerLeft = null;
 		Square squareLowerRight = null;
-		Square squareUpperLeft = null;
-		Square squareUpperRight = null;
 		Square squareCentre = null;
+		Square squareBelow = null;
 		
 		for(int i = 0;i < World.worldHeight;i++){
 			for(int j = 0;j < World.worldWidth;j++){
@@ -122,26 +120,19 @@ public class Player extends Rectangle{
 				}
 			}
 		}
-		for(int i = 0;i < World.worldHeight;i++){
-			for(int j = 0;j < World.worldWidth;j++){
-				if(World.squares[j][i].contains(x, y)){
-					squareUpperLeft = World.squares[j][i];
-					break;
-				}
-			}
-		}
-		for(int i = 0;i < World.worldHeight;i++){
-			for(int j = 0;j < World.worldWidth;j++){
-				if(World.squares[j][i].contains(x + width-1, y)){
-					squareUpperRight = World.squares[j][i];
-					break;
-				}
-			}
-		}
+		
 		for(int i = 0;i < World.worldHeight;i++){
 			for(int j = 0;j < World.worldWidth;j++){
 				if(World.squares[j][i].contains(x + (width-1)/2, y + (height + 1)/2)){
 					squareCentre = World.squares[j][i];
+					break;
+				}
+			}
+		}
+		for(int i = 0;i < World.worldHeight;i++){
+			for(int j = 0;j < World.worldWidth;j++){
+				if(World.squares[j][i].contains(x + (width-1)/2, y + height + 1)){
+					squareBelow = World.squares[j][i];
 					break;
 				}
 			}
@@ -155,26 +146,9 @@ public class Player extends Rectangle{
 		double acceleration;
 		double friction;
 		if(grounded){
-			if (squareLowerLeft.maxXSpeed > squareLowerRight.maxXSpeed){
-				maxXSpeed = squareLowerLeft.maxXSpeed;
-			}
-			else{
-				maxXSpeed = squareLowerRight.maxXSpeed;
-			}
-			
-			if (squareLowerLeft.acceleration > squareLowerRight.acceleration){
-				acceleration = squareLowerLeft.acceleration;
-			}
-			else{
-				acceleration = squareLowerRight.acceleration;
-			}
-			
-			if (squareLowerLeft.friction > squareLowerRight.friction){
-				friction = squareLowerLeft.friction;
-			}
-			else{
-				friction = squareLowerRight.friction;
-			}
+			maxXSpeed = squareBelow.maxXSpeed;
+			acceleration = squareBelow.acceleration;
+			friction = squareBelow.friction;
 		}
 		else{
 			maxXSpeed = squareCentre.maxXSpeed;
@@ -184,7 +158,6 @@ public class Player extends Rectangle{
 
 		doGravity(squareCentre.gravity);
 		
-
 		grounded = squareLowerLeft.solid | squareLowerRight.solid;
 		
 		if(isRight){
