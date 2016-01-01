@@ -27,46 +27,15 @@ public class Square extends Rectangle{
 		
 		this.ID = ID;
 		
-		if(ID == 0){
-			//air
-			friction = 0.8;
-			solid = true;
-			gravity = 0.1;
-			maxXSpeed = 2;
-		}
-		else if (ID == 1){
-			friction = 6;
-			solid = false;
-			gravity = 0;
-			maxXSpeed = 2;
-		}
-		else if (ID == 2){
-			friction = 1;
-			solid = false;
-			gravity = 0;
-			maxXSpeed = 3;
-		}
-		else if (ID == 3){
-			friction = 0;
-			solid = true;
-			gravity = 0.02; 
-			maxXSpeed = 2;
-		}
+		friction = Value.friction[ID];
+		solid = Value.solid[ID];
+		gravity = Value.gravity[ID];
+		maxXSpeed = Value.maxXSpeed[ID];
+		
 	}
 	
 	public void draw(Graphics g){
-		if(ID==0){
-			g.setColor(Color.WHITE);
-		}
-		else if(ID==1){
-			g.setColor(Color.BLACK);
-		}
-		else if(ID==2){
-			g.setColor(new Color(100,200,255));
-		}
-		else if(ID==3){
-			g.setColor(Color.GREEN);
-		}
+		g.setColor(Value.squareColor[ID]);
 		g.fillRect(x, y, width, height);
 	}
 }
