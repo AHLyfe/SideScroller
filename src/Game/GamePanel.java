@@ -114,16 +114,9 @@ public class GamePanel extends JPanel implements Runnable{
 		});
 		
 		
-		System.out.println("Heyo");
-		
-		//Set focusable to mouseMotionListener can detect and focus on panel
-		this.setFocusable(true);
-		this.requestFocusInWindow(true);
-		this.requestFocusInWindow();
-		
 		//Debug
 		this.setName("GamePanel");
-		
+	
 		//Start the runnable thread
 		thread.start();
 	}
@@ -142,6 +135,7 @@ public class GamePanel extends JPanel implements Runnable{
 		player.draw(g);
 		
 		ShowFPS.drawFPS(g);
+
 	}
 	
 	public void define(){
@@ -150,6 +144,11 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		world = new World("res/levels/test");
 		player = new Player();
+		
+
+		//Set focusable so mouseMotionListener and keyListener can detect and focus on panel
+		this.setFocusable(true);
+		this.requestFocusInWindow();
 	}
 	
 	public void run(){
