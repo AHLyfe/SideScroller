@@ -14,6 +14,7 @@ public class Square extends Rectangle{
 	boolean solid;
 	double gravity;
 	double maxXSpeed;
+	double acceleration;
 	
 	public Square(int x,int y, int ID){
 		xCo = x;
@@ -31,6 +32,8 @@ public class Square extends Rectangle{
 		solid = Value.solid[ID];
 		gravity = Value.gravity[ID];
 		maxXSpeed = Value.maxXSpeed[ID];
+		acceleration = Value.acceleration[ID];
+		
 		
 	}
 	
