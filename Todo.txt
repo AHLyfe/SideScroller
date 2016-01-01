@@ -1,1 +1,3 @@
 List of things to do
+
+Make gravity a bit more consistent
