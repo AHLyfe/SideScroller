@@ -13,6 +13,8 @@ public class World {
 	
 	public static Square[][] squares;
 	
+	public int offset;
+	
 	public World(String filepath){
 		
 		worldWidth = LoadLevel.loadLevelInfo(filepath);
@@ -26,7 +28,7 @@ public class World {
 	public void draw(Graphics g){
 		for(int y = 0;y < worldHeight;y++){
 			for(int x = 0;x < worldWidth;x++){
-				squares[x][y].draw(g);
+				squares[x][y].draw(g, offset);
 			}
 		}
 	}

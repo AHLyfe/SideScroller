@@ -37,8 +37,8 @@ public class Square extends Rectangle{
 		
 	}
 	
-	public void draw(Graphics g){
+	public void draw(Graphics g, int offset){
 		g.setColor(Value.squareColor[ID]);
-		g.fillRect(x, y, width, height);
+		g.fillRect(x + offset, y, width, height);
 	}
 }
