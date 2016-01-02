@@ -12,7 +12,7 @@ public class Value {
 	public static final int squareDenseAir = 3;
 	
 	public static final double[] maxXSpeed = {2, 2, 3, 2};
-	public static final double[] gravity = {0.05, 0, 0, -0.1};
+	public static final double[] gravity = {0.05, 0, 0, 0.08};
 	public static final double[] friction = {0.8, 6, 1, 0};
 	public static final double[] acceleration = {0.04, 0.04, 0.08, 0};
 	

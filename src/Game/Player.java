@@ -16,6 +16,8 @@ public class Player extends Rectangle{
 	boolean isUp;
 	double xVelocity = 0;
 	
+	double truex;
+	
 	
 	
 	public Player(){
@@ -213,7 +215,9 @@ public class Player extends Rectangle{
 		
 		grounded = squareLowerLeft.solid | squareLowerRight.solid;
 
-		
+		if(x>World.screenWidth/2){
+			World.offset += xVelocity;
+		}
 		if(x<0){
 			x = 0;
 			doublex = 0;
@@ -243,6 +247,6 @@ public class Player extends Rectangle{
 	
 	public void draw(Graphics g){
 		g.setColor(Color.BLUE);
-		g.drawRect(x, y, width, height);
+		g.drawRect(x - (int)World.offset, y, width, height);
 	}
 }
