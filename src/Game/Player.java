@@ -215,8 +215,14 @@ public class Player extends Rectangle{
 		
 		grounded = squareLowerLeft.solid | squareLowerRight.solid;
 
-		if(x>World.screenWidth/2){
-			World.offset += xVelocity;
+		if(x - (World.screenWidth/2) > 0 && x + (World.screenWidth/2) < World.worldWidth*World.blockSize){
+			World.offset = x - (World.screenWidth/2);
+		}
+		else if(x - (World.screenWidth/2) < 0){
+			World.offset = 0;
+		}
+		else if(x + (World.screenWidth/2) > World.worldWidth*World.blockSize){
+			World.offset = World.worldWidth*World.blockSize - World.screenWidth;
 		}
 		if(x<0){
 			x = 0;
