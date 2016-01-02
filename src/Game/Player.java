@@ -173,30 +173,31 @@ public class Player extends Rectangle{
 		
 		if(isRight){
 			if(xVelocity < 0){
-				xVelocity += acceleration*4;
+				xVelocity += acceleration*2;
 			}
 			else if(xVelocity < maxXSpeed){
 				xVelocity += acceleration; 
 			}
-			if(xVelocity > maxXSpeed){ //For high speeds
-				doXFriction(friction);
-			}
+			
 		}
 		else if(isLeft){
 			if(xVelocity > 0){
-				xVelocity -= acceleration*4;
+				xVelocity -= acceleration*2;
 			}
 			if(xVelocity > -maxXSpeed){
 				xVelocity -= acceleration;
 			}
-			if(xVelocity < -maxXSpeed){ //For high speeds
-				doXFriction(friction);
-			}
 
 		}
+		
 		else if(xVelocity != 0){
 			doXFriction(friction);
 		}
+		
+		if(Math.abs(xVelocity) > maxXSpeed){ // for high speeds
+			doXFriction(friction);// * 1.5);
+		}
+		
 		doublex += xVelocity;
 		x = (int)doublex;
 		

@@ -11,10 +11,10 @@ public class Value {
 	public static final int squareIce = 2;
 	public static final int squareDenseAir = 3;
 	
-	public static final double[] maxXSpeed = {2, 2, 3, 2};
-	public static final double[] gravity = {0.05, 0, 0, 0.08};
-	public static final double[] friction = {0.8, 6, 1, 0};
-	public static final double[] acceleration = {0.04, 0.04, 0.08, 0};
+	public static final double[] maxXSpeed = {2, 2, 6, 2};
+	public static final double[] gravity = {0.08, 0, 0, 0.02};
+	public static final double[] friction = {0.8, 8, 1, 0.8};
+	public static final double[] acceleration = {0.04, 0.04, 0.08, 0.04};
 	
 	public static final boolean[] solid = {false, true, true, false};
 	
