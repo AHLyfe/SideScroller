@@ -16,10 +16,6 @@ public class Player extends Rectangle{
 	boolean isUp;
 	double xVelocity = 0;
 	
-	double truex;
-	
-	
-	
 	public Player(){
 		width = 16;
 		height = 40;
@@ -105,6 +101,18 @@ public class Player extends Rectangle{
 		}
 	}
 	
+	public void calculateOffset(){
+		if(x - (World.screenWidth/2) > 0 && x + (World.screenWidth/2) < World.worldWidth*World.blockSize){
+			World.offset = x - (World.screenWidth/2);
+		}
+		else if(x - (World.screenWidth/2) < 0){
+			World.offset = 0;
+		}
+		else if(x + (World.screenWidth/2) > World.worldWidth*World.blockSize){
+			World.offset = World.worldWidth*World.blockSize - World.screenWidth;
+		}
+	}
+	
 	public void act(){
 		//calculate 2 squares below
 		Square squareLowerLeft = null;
@@ -147,9 +155,6 @@ public class Player extends Rectangle{
 		}
 		
 		
-
-
-		
 		double maxXSpeed;
 		double acceleration;
 		double friction;
@@ -167,7 +172,10 @@ public class Player extends Rectangle{
 		
 		
 		if(isRight){
-			if(xVelocity < maxXSpeed){
+			if(xVelocity < 0){
+				xVelocity += acceleration*4;
+			}
+			else if(xVelocity < maxXSpeed){
 				xVelocity += acceleration; 
 			}
 			if(xVelocity > maxXSpeed){ //For high speeds
@@ -175,6 +183,9 @@ public class Player extends Rectangle{
 			}
 		}
 		else if(isLeft){
+			if(xVelocity > 0){
+				xVelocity -= acceleration*4;
+			}
 			if(xVelocity > -maxXSpeed){
 				xVelocity -= acceleration;
 			}
@@ -189,7 +200,7 @@ public class Player extends Rectangle{
 		doublex += xVelocity;
 		x = (int)doublex;
 		
-		
+		//Check collisions from x changes
 		boolean collision = false;
 		for(int i = 0;i < World.worldHeight;i++){
 			for(int j = 0;j < World.worldWidth;j++){
@@ -215,15 +226,9 @@ public class Player extends Rectangle{
 		
 		grounded = squareLowerLeft.solid | squareLowerRight.solid;
 
-		if(x - (World.screenWidth/2) > 0 && x + (World.screenWidth/2) < World.worldWidth*World.blockSize){
-			World.offset = x - (World.screenWidth/2);
-		}
-		else if(x - (World.screenWidth/2) < 0){
-			World.offset = 0;
-		}
-		else if(x + (World.screenWidth/2) > World.worldWidth*World.blockSize){
-			World.offset = World.worldWidth*World.blockSize - World.screenWidth;
-		}
+		calculateOffset();
+		
+		//Check edges of world
 		if(x<0){
 			x = 0;
 			doublex = 0;
