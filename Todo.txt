@@ -4,6 +4,7 @@ Work out wtf this game actually is
 Menu
 Basic enemys
 Shooting
+Animations
 Multiplayer - Local Online(?)
 Sound Engine (I (not you) might try to make some music coz ye)
 Multiple Levels
