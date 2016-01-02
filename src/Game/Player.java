@@ -24,12 +24,17 @@ public class Player extends Rectangle{
 		x = 0;
 		doublex = 0;
 		
-		for(int i = 0;i<World.worldHeight;i++){
-			if(World.squares[0][i].solid){
-				System.out.println(i);
-				this.y = i*World.blockSize - height;
-				doubley = y;
-				break;
+		for(int i = 0;i < World.worldHeight;i++){
+			for(int j = 0;j < World.worldWidth;j++){
+				if(World.squares[j][i].ID == Value.squareSpawn){
+					this.x = j*World.blockSize + width/2;
+					this.y = i*World.blockSize - height + World.blockSize;
+					System.out.println(x + " " + y);
+
+					doublex = x;
+					doubley = y;
+					break;
+				}
 			}
 		}
 	}

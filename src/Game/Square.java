@@ -15,6 +15,7 @@ public class Square extends Rectangle{
 	double gravity;
 	double maxXSpeed;
 	double acceleration;
+	Color color;
 	
 	public Square(int x,int y, int ID){
 		xCo = x;
@@ -33,12 +34,17 @@ public class Square extends Rectangle{
 		gravity = Value.gravity[ID];
 		maxXSpeed = Value.maxXSpeed[ID];
 		acceleration = Value.acceleration[ID];
-		
+
+		color = Value.squareColor[ID];
 		
 	}
 	
 	public void draw(Graphics g, int offset){
-		g.setColor(Value.squareColor[ID]);
+		
+		g.setColor(color);
+		
+		
 		g.fillRect(x - offset, y, width, height);
+		
 	}
 }
