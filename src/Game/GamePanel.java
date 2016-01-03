@@ -10,6 +10,7 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
+import Game.Sound.SoundManager;
 import Main.ShowFPS;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -22,6 +23,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public Player player = null;
 	public World world;
+	public SoundManager soundManager;
 	
 	public int test; //Delete this variable
 	
@@ -144,6 +146,7 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		world = new World("res/levels/test");
 		player = new Player();
+		soundManager = new SoundManager();
 		
 
 		//Set focusable so mouseMotionListener and keyListener can detect and focus on panel
