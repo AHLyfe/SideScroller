@@ -38,7 +38,7 @@ public class LoadLevel {
 		}
 		
 		width = scanner.nextInt();
-		
+		scanner.close();
 		return width;
 	}
 }
