@@ -144,7 +144,7 @@ public class GamePanel extends JPanel implements Runnable{
 		myWidth = getWidth();
 		myHeight = getHeight();
 		
-		world = new World("res/levels/test");
+		world = new World("res/levels/stresstest");
 		player = new Player();
 		soundManager = new SoundManager();
 		
