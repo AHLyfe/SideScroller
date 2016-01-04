@@ -6,5 +6,5 @@ Basic enemys
 Shooting
 Animations
 Multiplayer - Local Online(?)
-Sound Engine (I (not you) might try to make some music coz ye)
+Sound Engine (fuck music ;-;)
 Multiple Levels
