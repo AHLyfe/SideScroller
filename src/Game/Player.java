@@ -17,7 +17,7 @@ public class Player extends Rectangle{
 	double xVelocity = 0;
 	
 	public Player(){
-		width = 16;
+		width = 160;
 		height = 40;
 		
 		//Place the Player on top of highest Block
