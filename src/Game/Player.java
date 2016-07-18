@@ -5,6 +5,7 @@ import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+//Extending rectangle is bad practice, don't do it
 public class Player extends Rectangle{
 	double dy;
 	double doublex;
