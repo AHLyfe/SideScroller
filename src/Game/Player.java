@@ -40,12 +40,11 @@ public class Player extends Rectangle{
 	}
 	
 	public void jump(){
-		isUp = true;
-		if(grounded){
+		if(grounded && isUp){
 			dy = -3;
 			grounded = false;
+			System.out.println("jump");
 		}
-		System.out.println("jump");
 	}
 	
 	public void left(){
@@ -119,6 +118,11 @@ public class Player extends Rectangle{
 	}
 	
 	public void act(){
+		//Check to see if player should jump
+		if(grounded){
+			jump();
+		}
+		
 		//calculate 2 squares below
 		Square squareLowerLeft = null;
 		Square squareLowerRight = null;
@@ -157,6 +161,10 @@ public class Player extends Rectangle{
 					break;
 				}
 			}
+		}
+		
+		if(squareCentre == null){
+			squareCentre = World.squares[0][0];
 		}
 		
 		
@@ -250,7 +258,6 @@ public class Player extends Rectangle{
 			y = 0;
 			doubley = 0;
 			dy = 0;
-			
 			
 		}
 		if(y > World.worldHeight*World.blockSize - height - 2){

@@ -14,7 +14,7 @@ public class Value {
 	
 	public static final double[] maxXSpeed = {2, 2, 6, 2, 2};
 	public static final double[] gravity = {0.08, 0, 0, 0.02, 0.08};
-	public static final double[] friction = {0.8, 8, 1, 0.8, 0.8};
+	public static final double[] friction = {0.8, 8, 3, 0.8, 0.8};
 	public static final double[] acceleration = {0.04, 0.04, 0.08, 0.04, 0.04};
 	
 	

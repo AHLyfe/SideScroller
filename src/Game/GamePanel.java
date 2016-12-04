@@ -23,13 +23,16 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public Player player = null;
 	public World world;
+	private String level;
 	public SoundManager soundManager;
 	
 	public int test; //Delete this variable
 	
 	
 	
-	public GamePanel(){
+	public GamePanel(String level){
+		this.level = level;
+		
 		//Add a mouse Listener to the JPanel
 		this.addMouseListener(new MouseListener(){
 			@Override
@@ -83,26 +86,30 @@ public class GamePanel extends JPanel implements Runnable{
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_LEFT){
+				if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A){
 					player.left();
 				}
-				else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+				else if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D){
 					player.right();
 				}
-				else if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE){
+				else if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_W){
+					player.isUp = true;
 					player.jump();
 				}	
+				else if(e.getKeyCode() == KeyEvent.VK_R){
+					reset();
+				}
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_LEFT){
+				if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A){
 					player.isLeft = false;
 				}
-				else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+				else if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D){
 					player.isRight = false;
 				}
-				else if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE){
+				else if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_W){
 					player.isUp = false;
 				}	
 				
@@ -123,6 +130,10 @@ public class GamePanel extends JPanel implements Runnable{
 		thread.start();
 	}
 	
+	public void reset(){
+		define();
+	}
+	
 	@Override
 	public void paintComponent(Graphics g){
 		if(first){
@@ -137,14 +148,13 @@ public class GamePanel extends JPanel implements Runnable{
 		player.draw(g);
 		
 		ShowFPS.drawFPS(g);
-
 	}
 	
 	public void define(){
 		myWidth = getWidth();
 		myHeight = getHeight();
 		
-		world = new World("res/levels/stresstest");
+		world = new World("res/levels/" + level);
 		player = new Player();
 		soundManager = new SoundManager();
 		

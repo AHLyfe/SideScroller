@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Game.GamePanel;
@@ -16,9 +17,7 @@ import Main.ShowFPS;
 
 public class MenuPanel extends JPanel implements Runnable{
 	Thread thread = new Thread(this);
-	
 	private boolean first = true;
-	
 	public int myWidth, myHeight;
 	
 	
@@ -45,7 +44,9 @@ public class MenuPanel extends JPanel implements Runnable{
 
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				Frame.setComponent(new GamePanel());
+				String levelname = JOptionPane.showInputDialog("Enter level name (try 'stresstest', 'test', 'test1')");
+				Frame.setComponent(new GamePanel(levelname));
+				Frame.frame.setTitle("SideScroller Game - " + levelname);
 				System.out.println("Hiu");
 				
 			}
