@@ -5,6 +5,7 @@ import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+//Extending rectangle is bad practice, don't do it
 public class Player extends Rectangle{
 	double dy;
 	double doublex;
@@ -17,7 +18,7 @@ public class Player extends Rectangle{
 	double xVelocity = 0;
 	
 	public Player(){
-		width = 16;
+		width = 160;
 		height = 40;
 		
 		//Place the Player on top of highest Block

@@ -15,6 +15,7 @@ import Game.GamePanel;
 import Main.Frame;
 import Main.ShowFPS;
 
+//Probably shouldn't implement Runnable atm, unless want to add custom extra things in the future
 public class MenuPanel extends JPanel implements Runnable{
 	Thread thread = new Thread(this);
 	private boolean first = true;
@@ -103,11 +104,13 @@ public class MenuPanel extends JPanel implements Runnable{
 		ShowFPS.drawFPS(g);
 	}
 	
+	//Sets local variables on instance creation
 	public void define(){
 		myWidth = getWidth();
 		myHeight = getHeight();
 	}
 	
+	//New Thread method
 	public void run(){
 		
 	}
